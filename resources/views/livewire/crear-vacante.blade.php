@@ -17,8 +17,10 @@
         />   
         {{-- el nombre definido con wire:model="titulo" --}}
         @error('titulo')
-            {{-- $message: el error--}}
-            {{ $message }}
+            {{-- $message: el error --}}
+            {{-- llamando al componente mostrarAlerta --}}
+            {{-- pasar el error ":" indica que es un valor dinamico --}}
+            <livewire:mostrar-alerta :message="$message" />
         @enderror     
     </div>
 

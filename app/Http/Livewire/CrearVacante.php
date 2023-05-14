@@ -8,6 +8,26 @@ use Livewire\Component;
 
 class CrearVacante extends Component
 {
+    public $titulo;
+    public $salario;
+    public $categoria;
+    public $empresa;
+    public $ultimo_dia;
+    public $descripcion;
+    public $imagen;
+
+    // Reglas de validacion
+    // debe de tener el mismo nombre con wire:model
+    protected $rules = [
+        'titulo'      => 'required|string',
+        'salario'     => 'required',
+        'categoria'   => 'required',
+        'empresa'     => 'required',
+        'ultimo_dia'  => 'required',
+        'descripcion' => 'required',
+        'imagen'      => 'required',
+    ];
+
     public function render()
     {
         // Consultar BD

@@ -1,6 +1,8 @@
 {{-- md:w-1/2: centra el formulario en la pantalla no toma todo el ancho --}}
 {{-- space-y-5: separa cada div dentro del formulario --}}
-<form class="md:w-1/2 space-y-5">
+{{-- con livewire no se requiere @csrf --}}
+{{-- para poder comunicar los datos del form al componente y poderlo enviar utilizar wire:submit.prevent='crearVacante' --}}
+<form class="md:w-1/2 space-y-5" wire:submit.prevent='crearVacante'>
     <div>
         <x-input-label for="titulo" :value="__('Título Vacante')" />
         <x-text-input 
@@ -12,7 +14,12 @@
             wire:model="titulo" 
             :value="old('titulo')"  
             placeholder="Título Vacante"
-        />        
+        />   
+        {{-- el nombre definido con wire:model="titulo" --}}
+        @error('titulo')
+            {{-- $message: el error--}}
+            {{ $message }}
+        @enderror     
     </div>
 
     <div>

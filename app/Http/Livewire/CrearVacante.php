@@ -28,6 +28,14 @@ class CrearVacante extends Component
         'imagen'      => 'required',
     ];
 
+    // definir la funcion declarada en el archivo blade con wire:submit.prevent='crearVacante'
+    public function crearVacante()
+    {
+        // validate() aplica $rules definidas 
+        // si todo esta bien el formulario se asigna a una variable $datos
+        $datos = $this->validate();
+    }
+
     public function render()
     {
         // Consultar BD

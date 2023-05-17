@@ -109,6 +109,17 @@
             wire:model="imagen"
             accept="image/*"             
         /> 
+        
+        {{-- preview de imagen w-80 tamaño de la imagen --}}
+        <div class="my-5 w-80">
+            {{-- to way data binding: envias datos al servidor y obtienes una respuesta hacia al frontend --}}
+            @if ($imagen)
+                Imagen: 
+                {{-- url temporal del la imagen todabia no es subida al servidor --}}
+                <img src="{{ $imagen->temporaryUrl() }}" alt="">    
+            @endif
+        </div>
+
         @error('imagen')           
             <livewire:mostrar-alerta :message="$message" />
         @enderror         

@@ -15,7 +15,7 @@
             :value="old('titulo')"  
             placeholder="Título Vacante"
         />   
-        {{-- el nombre definido con wire:model="titulo" --}}
+        {{-- @error('titulo'): es el nombre definido con wire:model="titulo" --}}
         @error('titulo')
             {{-- $message: el error --}}
             {{-- llamando al componente mostrarAlerta --}}
@@ -35,7 +35,10 @@
             @foreach ($salarios as $salario)
                 <option value="{{ $salario->id}}">{{ $salario->salario }}</option>
             @endforeach    
-        </select>        
+        </select>         
+        @error('salario')           
+            <livewire:mostrar-alerta :message="$message" />
+        @enderror 
     </div>
 
     <div>
@@ -49,7 +52,10 @@
         @foreach ($categorias as $categoria)
             <option value="{{ $categoria->id}}">{{ $categoria->categoria }}</option>
         @endforeach       
-        </select>      
+        </select> 
+        @error('categoria')           
+            <livewire:mostrar-alerta :message="$message" />
+        @enderror      
     </div>
 
     <div>
@@ -61,7 +67,10 @@
             wire:model="empresa" 
             :value="old('empresa')"  
             placeholder="Empresa: ej. Netflix, Uber, Shopify"
-        />        
+        />
+        @error('empresa')           
+            <livewire:mostrar-alerta :message="$message" />
+        @enderror           
     </div>
 
     <div>
@@ -72,7 +81,10 @@
             type="date" 
             wire:model="ultimo_dia" 
             :value="old('ultimo_dia')"              
-        />     
+        /> 
+        @error('ultimo_dia')           
+            <livewire:mostrar-alerta :message="$message" />
+        @enderror      
     </div>
 
     <div>
@@ -83,6 +95,9 @@
             class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full h-72" 
         >
         </textarea>  
+        @error('descripcion')           
+            <livewire:mostrar-alerta :message="$message" />
+        @enderror  
     </div>
 
     <div>
@@ -92,7 +107,10 @@
             class="block mt-1 w-full" 
             type="file" 
             wire:model="imagen"             
-        />        
+        /> 
+        @error('imagen')           
+            <livewire:mostrar-alerta :message="$message" />
+        @enderror         
     </div>
 
     <div>

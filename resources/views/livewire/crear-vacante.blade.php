@@ -116,7 +116,7 @@
             @if ($imagen)
                 Imagen: 
                 {{-- url temporal del la imagen todabia no es subida al servidor --}}
-                <img src="{{ $imagen->temporaryUrl() }}" alt="">    
+                <img src="{{ $imagen->temporaryUrl() }}" >    
             @endif
         </div>
 

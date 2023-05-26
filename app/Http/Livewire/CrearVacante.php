@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Categoria;
 use App\Models\Salario;
+use App\Models\Vacante;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -41,12 +42,23 @@ class CrearVacante extends Component
 
         // almacenar la imagen y la referencia de la imagen
         $imagen = $this->imagen->store('public/vacantes');// store() metodo de livewire
-        $nombre_imagen = str_replace('public/vacantes/','', $imagen);
+        $datos['imagen'] = str_replace('public/vacantes/','', $imagen);
         // dd($nombre_imagen);
 
-        // crear la vacante
+        // crear la vacante (importar modelo Vacante)
+        // desde aqui no tenemos acceso al request pero si a la variable $datos(acceso al request ya validado)
+        Vacante::create([
+            'titulo'      => $datos['titulo'],
+            'salario_id'  => $datos['salario'],
+            'categoria_id'=> $datos['categoria'],
+            'empresa'     => $datos['empresa'],
+            'ultimo_dia'  => $datos['ultimo_dia'],
+            'descripcion' => $datos['descripcion'],
+            'imagen'      => $datos['imagen'],
+            'user_id'     => auth()->user()->id //obtener el usuario autenticado
+        ]);
 
-        // crear mesaje
+        // crear mensaje
 
         // redireccionar al usuario
 

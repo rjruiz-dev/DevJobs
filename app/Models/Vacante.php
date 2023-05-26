@@ -9,6 +9,8 @@ class Vacante extends Model
 {
     use HasFactory;
 
+    protected $casts = ['ultimo_dia'=>'date']; // en lugar de string, va a ser una fecha (sin esto blade lo trata como string)
+
     protected $fillable = [
         'titulo',
         'salario_id',

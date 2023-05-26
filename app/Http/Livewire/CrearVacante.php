@@ -38,6 +38,19 @@ class CrearVacante extends Component
         // validate() aplica $rules definidas 
         // si todo esta bien el formulario se asigna a una variable $datos
         $datos = $this->validate();
+
+        // almacenar la imagen y la referencia de la imagen
+        $imagen = $this->imagen->store('public/vacantes');// store() metodo de livewire
+        $nombre_imagen = str_replace('public/vacantes/','', $imagen);
+        // dd($nombre_imagen);
+
+        // crear la vacante
+
+        // crear mesaje
+
+        // redireccionar al usuario
+
+
     }
 
     public function render()

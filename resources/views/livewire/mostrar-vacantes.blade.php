@@ -1,6 +1,6 @@
-<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-    @foreach ($vacantes as $vacante )
-       
+<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">  
+    {{-- @forelse propio de laravel --}}
+    @forelse ($vacantes as $vacante )       
         <div class="p-6 bg-white border-b border-gray-200 md:flex md:justify-between md:items-center">
             {{-- <div class="leading-10">leading-10: incrementa el interlineado --}}
             <div class="space-y-3">
@@ -28,5 +28,7 @@
                 >Eliminar</a>
             </div>
         </div>
-    @endforeach
+    @empty
+        <p class="p-3 text-center text-sm text-gray-600">No hay vacantes que mostrar</p>
+    @endforelse
 </div>

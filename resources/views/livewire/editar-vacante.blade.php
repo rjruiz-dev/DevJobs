@@ -110,7 +110,11 @@
             accept="image/*"             
         /> 
         
-        
+        <div class="my-5 w-80">
+            <x-input-label :value="__('Imagen Actual')" />
+            {{-- asset: apunta a archivos estaticos --}}
+            <img src="{{ asset('storage/vacantes/' . $imagen) }}" alt="{{ 'Imagen Vacante' . $titulo }}">
+        </div>
         {{-- <div class="my-5 w-80">           
             @if ($imagen)
                 Imagen:                

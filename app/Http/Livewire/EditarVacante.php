@@ -17,8 +17,18 @@ class EditarVacante extends Component
     public $empresa;
     public $ultimo_dia;
     public $descripcion;
-    public $imagen;
+    public $imagen;    
 
+    // Reglas de validacion
+    // debe de tener el mismo nombre con wire:model
+    protected $rules = [
+        'titulo'      => 'required|string',
+        'salario'     => 'required',
+        'categoria'   => 'required',
+        'empresa'     => 'required',
+        'ultimo_dia'  => 'required',
+        'descripcion' => 'required'
+    ];
 
     // Cuando el componente ha sido instanciado y solo se ejecuta una ves
     // mount(Vacante): es el modelo, $vacante es la instancia
@@ -31,6 +41,11 @@ class EditarVacante extends Component
         $this->ultimo_dia = Carbon::parse($vacante->ultimo_dia)->format('Y-m-d'); // Formato a fecha 
         $this->descripcion = $vacante->descripcion; 
         $this->imagen = $vacante->imagen; 
+    }
+
+    public function editarVacante()
+    {
+        $datos = $this->validate();
     }
 
     public function render()

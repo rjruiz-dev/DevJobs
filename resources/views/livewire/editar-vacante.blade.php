@@ -2,7 +2,7 @@
 {{-- space-y-5: separa cada div dentro del formulario --}}
 {{-- con livewire no se requiere @csrf --}}
 {{-- para poder comunicar los datos del form al componente y poderlo enviar utilizar wire:submit.prevent='crearVacante' --}}
-<form class="md:w-1/2 space-y-5" wire:submit.prevent='crearVacante'>
+<form class="md:w-1/2 space-y-5" wire:submit.prevent='editarVacante'>
     <div>
         <x-input-label for="titulo" :value="__('Título Vacante')" />
         <x-text-input 
@@ -129,7 +129,7 @@
 
     <div>
         <x-primary-button>
-            Crear Vacante
+            Guardar Cambios
         </x-primary-button>
     </div>
 

@@ -45,6 +45,9 @@ class VacanteController extends Controller
     // con route model binding importamos el modelo Vacante (en ves de usar $id)
     public function edit(Vacante $vacante)
     {
+        // policy
+        $this->authorize('update', $vacante);
+        
         // dd($vacante);
         return view('vacantes.edit', [
             'vacante' => $vacante

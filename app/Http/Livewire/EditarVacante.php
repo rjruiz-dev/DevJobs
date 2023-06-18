@@ -7,6 +7,7 @@ use App\Models\Vacante;
 use Livewire\Component;
 use App\Models\Categoria;
 use Illuminate\Support\Carbon;
+use Livewire\WithFileUploads;
 
 class EditarVacante extends Component
 {
@@ -19,7 +20,10 @@ class EditarVacante extends Component
     public $empresa;
     public $ultimo_dia;
     public $descripcion;
-    public $imagen;    
+    public $imagen; // no es obligatorio
+    public $imagen_nueva; // en caso de actualizar la imagen 
+
+    use WithFileUploads;
 
     // Reglas de validacion
     // debe de tener el mismo nombre con wire:model
@@ -29,7 +33,8 @@ class EditarVacante extends Component
         'categoria'   => 'required',
         'empresa'     => 'required',
         'ultimo_dia'  => 'required',
-        'descripcion' => 'required'
+        'descripcion' => 'required',
+        'imagen_nueva'=> 'nullable|image|max:1024', // tamaño max: 1mb
     ];
 
     // Cuando el componente ha sido instanciado y solo se ejecuta una ves
@@ -51,6 +56,10 @@ class EditarVacante extends Component
         $datos = $this->validate();
 
         // si hay una nueva imagen
+        if($this->imagen_nueva){
+            $imagen = $this->imagen_nueva->store('public/vacantes');
+            $datos['imagen'] = str_replace('public/vacantes', '', $imagen);
+        }
 
         // encontrar la vacante a editar
         $vacante = Vacante::find($this->vacante_id);
@@ -61,7 +70,8 @@ class EditarVacante extends Component
         $vacante->categoria_id = $datos['categoria'];
         $vacante->empresa = $datos['empresa'];
         $vacante->ultimo_dia = $datos['ultimo_dia'];
-        $vacante->descripcion = $datos['descripcion'];       
+        $vacante->descripcion = $datos['descripcion'];
+        $vacante->imagen = $datos['imagen'] ?? $vacante->imagen;
 
         // guardar la vacante 
         $vacante->save();

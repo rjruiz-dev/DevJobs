@@ -30,7 +30,7 @@ class CrearVacante extends Component
         'empresa'     => 'required',
         'ultimo_dia'  => 'required',
         'descripcion' => 'required',
-        'imagen'      => 'required|max:1024', // tamaño max: 1mb
+        'imagen'      => 'required|image|max:1024', // tamaño max: 1mb
     ];
 
     // definir la funcion declarada en el archivo blade con wire:submit.prevent='crearVacante'

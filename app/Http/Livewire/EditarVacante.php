@@ -10,6 +10,8 @@ use Illuminate\Support\Carbon;
 
 class EditarVacante extends Component
 {
+    public $vacante_id; //  $id es palabra reservada de livewire
+
     // son los nombres segun los tenemos en wire:model del componete editar_vacante.blade.php
     public $titulo;
     public $salario;
@@ -34,6 +36,7 @@ class EditarVacante extends Component
     // mount(Vacante): es el modelo, $vacante es la instancia
     public function mount(Vacante $vacante)
     {       
+        $this->vacante_id = $vacante->id;
         $this->titulo = $vacante->titulo;  //  $this->titulo hace referncia a public $titulo
         $this->salario = $vacante->salario_id; // salario_id: es el campo de la db
         $this->categoria = $vacante->categoria_id; 
@@ -46,6 +49,27 @@ class EditarVacante extends Component
     public function editarVacante()
     {
         $datos = $this->validate();
+
+        // si hay una nueva imagen
+
+        // encontrar la vacante a editar
+        $vacante = Vacante::find($this->vacante_id);
+
+        // asignar los valores
+        $vacante->titulo = $datos['titulo'];
+        $vacante->salario_id = $datos['salario'];
+        $vacante->categoria_id = $datos['categoria'];
+        $vacante->empresa = $datos['empresa'];
+        $vacante->ultimo_dia = $datos['ultimo_dia'];
+        $vacante->descripcion = $datos['descripcion'];       
+
+        // guardar la vacante 
+        $vacante->save();
+
+        // redireccionar
+        session()->flash('mensaje', 'La Vacante se actualizó Correctamente');
+
+        return redirect()->route('vacantes.index');
     }
 
     public function render()

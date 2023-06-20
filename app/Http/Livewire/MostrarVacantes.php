@@ -8,12 +8,14 @@ use Livewire\Component;
 class MostrarVacantes extends Component
 {
     // colocar la funciones que van a escuchar por algun evento, que se emita en la vista o template
-    // protected $listeners = ['prueba'];
+    protected $listeners = ['eliminarVacante'];
     
-    // public function prueba($vacante_id)
-    // {
-    //     // dd(vacante_id);
-    // }
+    // route model binding  (Vacante $vacante) es un objeto completo con toda la informacion de la vacante
+    public function eliminarVacante(Vacante $vacante)
+    {
+        // dd($vacante->titulo);
+        $vacante->delete();
+    }
 
     public function render()
     {

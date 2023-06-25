@@ -41,4 +41,11 @@
             </p>
         </div>
     @endguest
+    
+    {{-- Laravel tiene directivas para conectar con los roles del policy --}}
+    {{-- cannot: no puede crear --}}
+    @cannot('create', App\Models\Vacante::class)    
+        <livewire:postular-vacante />{{-- Reenderizar el componente --}}
+    @endcannot
+    
 </div>

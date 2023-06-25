@@ -30,7 +30,7 @@ class VacantePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->rol === 2;
     }
 
     /**

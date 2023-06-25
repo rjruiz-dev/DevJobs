@@ -22,7 +22,9 @@
         </div>
     </div>
 
+    {{-- gap-4: permite separar las columnas (espacio entre columnas) --}}
     <div class="md:grid md:grid-cols-6 gap-4">
+        {{-- con span indicamos cuantas columnas tomamos --}}
         <div class="md:col-span-2">
             <img src="{{ asset('storage/vacantes/' . $vacante->imagen ) }}" alt="{{'Imagen vacante ' . $vacante->titulo}}">
         </div>

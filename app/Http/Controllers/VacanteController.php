@@ -12,6 +12,8 @@ class VacanteController extends Controller
      */
     public function index()
     {
+        // Pasamos el modelo Vacante::class previene el acceso a todo lo relacionado con el modelo
+        $this->authorize('viewAny', Vacante::class);
         return view('vacantes.index');
     }
 
@@ -39,7 +41,7 @@ class VacanteController extends Controller
     // con route model binding importamos el modelo Vacante (en ves de usar $id)
     public function edit(Vacante $vacante)
     {
-        // policy
+        // policy pasamos la instancia
         $this->authorize('update', $vacante);
 
         // dd($vacante);

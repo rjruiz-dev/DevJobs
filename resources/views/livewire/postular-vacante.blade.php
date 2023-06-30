@@ -10,5 +10,8 @@
                 class="block mt-1 w-full"                
             />
         </div>
+        <x-primary-button class="my-5">
+            {{ __('Postularme') }}
+        </x-primary-button>
     </form>
 </div>

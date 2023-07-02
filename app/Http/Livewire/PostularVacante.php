@@ -3,11 +3,13 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class PostularVacante extends Component
 {
-    // public $cv; conectamos con postular-vacante.blade.php mediante wire:model="cv" 
-    public $cv;
+    use WithFileUploads; // habilita la carga de archivos.   
+    
+    public $cv; // public $cv; conectamos con postular-vacante.blade.php mediante wire:model="cv" 
 
     // validacion
     protected $rules = [
@@ -17,9 +19,12 @@ class PostularVacante extends Component
     // llamamos a la funcion declarada en el formulario en postular-vacante.blade.php
     public function postularme() 
     {
-        $this->validate();
+        
+        $datos = $this->validate();
 
-        // Alamacenar CV en el disco duro
+        // Almacenar el cv y la referencia del cv
+        $cv = $this->cv->store('public/cv');// store() metodo de livewire
+        $datos['cv'] = str_replace('public/cv/','', $cv);
         
         // Crear la vacante
 

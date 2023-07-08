@@ -37,4 +37,11 @@ class Vacante extends Model
         // Una vacante tiene muchos candidatos
         return $this->hasMany(Candidato::class); 
     }
+
+    // la relacion es hacia el reclutador la persona que publico la vacante
+    public function reclutador()
+    {
+        // una vacante pertenence a un usuario
+        return $this->belongsTo(User::class, 'user_id'); // 'user_id': los usuarios se almacenan en la tabla de users
+    }
 }

@@ -15,6 +15,10 @@ class NotificacionController extends Controller
         // dd('Desde Notificacion Controller');
         // las notificaciones que el usuario aun no ha leido
         $notificaciones = auth()->user()->unreadNotifications;
+
+        // limpiar las notificaciones
+        auth()->user()->unreadNotifications->markAsRead();
+
         return view ('notificaciones.index', [
             'notificaciones' => $notificaciones
         ]);

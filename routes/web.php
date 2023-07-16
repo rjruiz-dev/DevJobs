@@ -26,7 +26,7 @@ Route::get('/vacantes/{vacante}edit', [VacanteController::class, 'edit'])->middl
 Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show'); // no aplica autenticado ni verificado, todos pueden acceder
 
 // Notificaciones
-Route::get('/notificaciones', NotificacionController::class);
+Route::get('/notificaciones', NotificacionController::class)->name('notificaciones');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

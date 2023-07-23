@@ -11,7 +11,42 @@
                 <div class="p-6 text-gray-900">
                     <h1 class="text-2xl font-bold text-center my-18">Candidatos Vacante {{ $vacante->titulo }}</h1>
                     <div class="md:flex md:justify-center p-5">
-                       
+                        <ul class="divide-y divide-gray-200 w-full">
+                            @forelse ($vacante->candidatos as $candidato )
+                                {{-- p-3: padding en todas las direcciones --}}
+                                {{-- flex items-center : contenido centrado horiz. --}}
+                                <li class="p-3 flex items-center ">
+                                    {{-- lado izq: info de la persona que se postulo a la vacante --}}
+                                    {{-- flex-1: toma el resto del contenido --}}
+                                    <div class="flex-1">
+                                        {{-- <pre>
+                                            {{ $candidato->user }}
+                                        </pre> --}}
+                                        <p class="text-xl font-medium text-gray-800">
+                                            {{ $candidato->user->name }}
+                                        </p>
+                                        <p class="text-sm text-gray-600">
+                                            {{ $candidato->user->email }}
+                                        </p>
+                                        <p class="text-sm font-medium text-gray-600">
+                                            Dia que se postuló: <span class="font-normal">{{ $candidato->created_at->diffForHumans() }} </span>
+                                        </p>
+                                    </div>
+                                    {{-- lado der: contenedor para poder ver el cv --}}
+                                    <div>
+                                        <a class="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium
+                                        rounded-full text-gray-700 bg-white hover:bg-gray-50"
+                                        href="{{ asset('storage/cv/' . $candidato->cv ) }}"
+                                        target="_blank"
+                                        rel="noreferrer noopener">
+                                            Ver CV
+                                        </a>
+                                    </div>
+                                </li>
+                            @empty
+                                <p class="p-3 text-center text-sm text-gray-600">No hay candidatos</p>
+                            @endforelse
+                        </ul>
                     </div>
                 </div>
             </div>

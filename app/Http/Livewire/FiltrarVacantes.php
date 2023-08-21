@@ -14,7 +14,8 @@ class FiltrarVacantes extends Component
 
     public function leerDatosFormulario()
     {
-        dd('Buscando...');
+        // dd('Buscando...');
+        $this->emit('terminoBusqueda', $this->termino, $this->categoria, $this->salario); // emite el evento terminoBusqueda
     }
 
     public function render()
